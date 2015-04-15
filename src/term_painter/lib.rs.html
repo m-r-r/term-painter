@@ -463,6 +463,116 @@
 <span id="421">421</span>
 <span id="422">422</span>
 <span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! This is a crate for coloring and formatting terminal output. Simple</span>
 <span class='doccomment'>//! example:</span>
@@ -481,6 +591,10 @@
 <span class='doccomment'>//!         Red.bold().paint(&quot;Both!&quot;));</span>
 <span class='doccomment'>//! }</span>
 <span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! This crate uses `rust-lang/term` to do the formatting. You can of course</span>
+<span class='doccomment'>//! use `term` directly, but it&#39;s kinda clumsy. Hence this library.</span>
+<span class='doccomment'>//!</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! How to use it</span>
 <span class='doccomment'>//! -------------</span>
@@ -507,13 +621,11 @@
 <span class='doccomment'>//! fn main() {</span>
 <span class='doccomment'>//!     let x = 5;</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//!     // These two are equivalent</span>
-<span class='doccomment'>//!     println!(&quot;{}&quot;, x);</span>
-<span class='doccomment'>//!     println!(&quot;{}&quot;, Plain.paint(&amp;x));</span>
+<span class='doccomment'>//!    // These two are equivalent</span>
+<span class='doccomment'>//!    println!(&quot;{} | {}&quot;, x, Plain.paint(x));</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//!     // These two are equivalent, too</span>
-<span class='doccomment'>//!     println!(&quot;{}&quot;, Red.paint(&amp;x));</span>
-<span class='doccomment'>//!     println!(&quot;{}&quot;, Plain.fg(Red).paint(&amp;x));</span>
+<span class='doccomment'>//!    // These two are equivalent, too</span>
+<span class='doccomment'>//!    println!(&quot;{} | {}&quot;, Red.paint(x), Plain.fg(Red).paint(x));</span>
 <span class='doccomment'>//! }</span>
 <span class='doccomment'>//! ```</span>
 <span class='doccomment'>//! You can chain as many modifier as you want. Every modifier overrides</span>
@@ -523,7 +635,9 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! 2. Use the style</span>
 <span class='doccomment'>//! ----------------</span>
-<span class='doccomment'>//! After building the style, you can call `paint` to use it on some object.</span>
+<span class='doccomment'>//! After building the style, you can use it in two different ways.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! One way is to call `paint` to use it on some object.</span>
 <span class='doccomment'>//! `paint` will return the wrapper object `Painted` that holds your object and</span>
 <span class='doccomment'>//! the specified style. `Painted` implements `Display` and/or `Debug` if the</span>
 <span class='doccomment'>//! type of the given Object, `T`, does. So the `Painted` object can be printed</span>
@@ -560,6 +674,66 @@
 <span class='doccomment'>//! }</span>
 <span class='doccomment'>//! ```</span>
 <span class='doccomment'>//!</span>
+<span class='doccomment'>//! Another way is to call `with`. `with` takes another function (usually a</span>
+<span class='doccomment'>//! closure) and everything that is printed within that closure is formatted</span>
+<span class='doccomment'>//! with the given style. It can be chained and used together with `paint`.</span>
+<span class='doccomment'>//! Inner calls will overwrite outer calls of `with`.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! extern crate term_painter;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! use term_painter::ToStyle;</span>
+<span class='doccomment'>//! use term_painter::Color::*;</span>
+<span class='doccomment'>//! use term_painter::Attr::*;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! fn main() {</span>
+<span class='doccomment'>//!     Red.with(|| {</span>
+<span class='doccomment'>//!         print!(&quot;JustRed&quot;);</span>
+<span class='doccomment'>//!         Bold.with(|| {</span>
+<span class='doccomment'>//!             print!(&quot; BoldRed {} BoldRed &quot;, Underline.paint(&quot;Underline&quot;));</span>
+<span class='doccomment'>//!         });</span>
+<span class='doccomment'>//!         print!(&quot;JustRed &quot;);</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//!          print!(&quot;{}&quot;, Blue.paint(&quot;Blue (overwrite) &quot;));</span>
+<span class='doccomment'>//!          Green.with(|| {</span>
+<span class='doccomment'>//!              println!(&quot;Green (overwrite)&quot;);</span>
+<span class='doccomment'>//!          });</span>
+<span class='doccomment'>//!     });</span>
+<span class='doccomment'>//! }</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Some Notes</span>
+<span class='doccomment'>//! ----------</span>
+<span class='doccomment'>//! If you don&#39;t want to pollute your namespace with `Color` and `Attr` names,</span>
+<span class='doccomment'>//! you can use a more qualified name (`Color::Red.paint(..)`) and remove these</span>
+<span class='doccomment'>//! `use` statements: `use term_painter::Color::*;` and</span>
+<span class='doccomment'>//! `use term_painter::Attr::*;`.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! And please note that global state is changed when printing a `Painted`</span>
+<span class='doccomment'>//! object. This means that some state is set before and reset after printing.</span>
+<span class='doccomment'>//! This means that, for example, using this library in `format!` or `write!`</span>
+<span class='doccomment'>//! won&#39;t work. The color formatting is not stored in the resulting string.</span>
+<span class='doccomment'>//! Although Unix terminals do modify color and formatting by printing special</span>
+<span class='doccomment'>//! control characters, Windows and others do not. And since this library uses</span>
+<span class='doccomment'>//! the plattform independent library `term`. This was a design choice.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! This crate also assumes that the terminal state is not altered by anything</span>
+<span class='doccomment'>//! else. Calling `term` function directly might result in strange behaviour.</span>
+<span class='doccomment'>//! This is due to the fact that one can not read the current terminal state.</span>
+<span class='doccomment'>//! In order to work like this, this crate needs to track terminal state</span>
+<span class='doccomment'>//! itself. However, there shouldn&#39;t be any problems when the terminal state</span>
+<span class='doccomment'>//! is completely reset in between using those two methods.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Another possible source of confusion might be multithreading. Terminal</span>
+<span class='doccomment'>//! state and handles are hold in thread local variables. If two terminal</span>
+<span class='doccomment'>//! handles would reference the same physical terminal, those two threads could</span>
+<span class='doccomment'>//! interfere with each other. I have not tested it though.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Functions of `term` sometimes return a `Result` that is `Err` when the</span>
+<span class='doccomment'>//! function fails to set state. However, this crate silently ignores those</span>
+<span class='doccomment'>//! failures. To check the capabilities of the terminal, use `term` directly.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//!</span>
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>term</span>;
 
@@ -571,7 +745,7 @@
 <span class='doccomment'>/// Everything that can be seen as part of a style. This is the core of this</span>
 <span class='doccomment'>/// crate. All functions (&quot;style modifier&quot;) consume self and return a modified</span>
 <span class='doccomment'>/// version of the style.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ToStyle</span> : <span class='ident'>Clone</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ToStyle</span> : <span class='ident'>Sized</span> {
     <span class='kw'>fn</span> <span class='ident'>to_style</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span>;
 
     <span class='doccomment'>/// Sets the foreground (text) color.</span>
@@ -591,42 +765,42 @@
     <span class='doccomment'>/// Makes the text bold.</span>
     <span class='kw'>fn</span> <span class='ident'>bold</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>to_style</span>();
-        <span class='ident'>s</span>.<span class='ident'>bold</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>s</span>.<span class='ident'>bold</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>);
         <span class='ident'>s</span>
     }
 
     <span class='doccomment'>/// Dim mode.</span>
     <span class='kw'>fn</span> <span class='ident'>dim</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>to_style</span>();
-        <span class='ident'>s</span>.<span class='ident'>dim</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>s</span>.<span class='ident'>dim</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>);
         <span class='ident'>s</span>
     }
 
     <span class='doccomment'>/// Underlines the text.</span>
     <span class='kw'>fn</span> <span class='ident'>underline</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>to_style</span>();
-        <span class='ident'>s</span>.<span class='ident'>underline</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>s</span>.<span class='ident'>underline</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>);
         <span class='ident'>s</span>
     }
 
     <span class='doccomment'>/// Underlines the text.</span>
     <span class='kw'>fn</span> <span class='ident'>blink</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>to_style</span>();
-        <span class='ident'>s</span>.<span class='ident'>blink</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>s</span>.<span class='ident'>blink</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>);
         <span class='ident'>s</span>
     }
 
     <span class='doccomment'>/// Underlines the text.</span>
     <span class='kw'>fn</span> <span class='ident'>reverse</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>to_style</span>();
-        <span class='ident'>s</span>.<span class='ident'>reverse</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>s</span>.<span class='ident'>reverse</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>);
         <span class='ident'>s</span>
     }
 
     <span class='doccomment'>/// Secure mode.</span>
     <span class='kw'>fn</span> <span class='ident'>secure</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>to_style</span>();
-        <span class='ident'>s</span>.<span class='ident'>secure</span> <span class='op'>=</span> <span class='boolval'>true</span>;
+        <span class='ident'>s</span>.<span class='ident'>secure</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>);
         <span class='ident'>s</span>
     }
 
@@ -634,13 +808,36 @@
     <span class='doccomment'>/// into a `Painted`. When `Painted` is printed it will print the arbitrary</span>
     <span class='doccomment'>/// something with the given style. `T` needs to implement</span>
     <span class='doccomment'>/// `std::fmt::Display` or `std::fmt::Debug`.</span>
-    <span class='kw'>fn</span> <span class='ident'>paint</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>obj</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>Painted</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
-        <span class='ident'>Painted</span> { <span class='ident'>style</span>: <span class='self'>self</span>.<span class='ident'>clone</span>().<span class='ident'>to_style</span>() , <span class='ident'>obj</span>: <span class='ident'>obj</span> }
+    <span class='kw'>fn</span> <span class='ident'>paint</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>obj</span>: <span class='ident'>T</span>) <span class='op'>-&gt;</span> <span class='ident'>Painted</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>
+        <span class='kw'>where</span> <span class='kw'>Self</span>: <span class='ident'>Clone</span> {
+        <span class='ident'>Painted</span> { <span class='ident'>style</span>: <span class='self'>self</span>.<span class='ident'>clone</span>().<span class='ident'>to_style</span>(), <span class='ident'>obj</span>: <span class='ident'>obj</span> }
+    }
+
+    <span class='doccomment'>/// Executes the given function, applying the style information before</span>
+    <span class='doccomment'>/// calling it and resetting after it finished.</span>
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_must_use</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>with</span><span class='op'>&lt;</span><span class='ident'>F</span>, <span class='ident'>R</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>R</span>
+        <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>() <span class='op'>-&gt;</span> <span class='ident'>R</span>, <span class='kw'>Self</span>: <span class='ident'>Clone</span> {
+        <span class='comment'>// Shorthand for the new style and the style that was active before</span>
+        <span class='kw'>let</span> <span class='ident'>new</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>clone</span>().<span class='ident'>to_style</span>();
+        <span class='kw'>let</span> <span class='ident'>before</span> <span class='op'>=</span> <span class='ident'>CURR_STYLE</span>.<span class='ident'>with</span>(<span class='op'>|</span><span class='ident'>curr</span><span class='op'>|</span> <span class='ident'>curr</span>.<span class='ident'>borrow</span>().<span class='ident'>clone</span>());
+
+        <span class='comment'>// Apply the new style and setting the merged style as CURR_STYLE</span>
+        <span class='ident'>new</span>.<span class='ident'>apply</span>();
+        <span class='ident'>CURR_STYLE</span>.<span class='ident'>with</span>(<span class='op'>|</span><span class='ident'>curr</span><span class='op'>|</span> <span class='op'>*</span><span class='ident'>curr</span>.<span class='ident'>borrow_mut</span>() <span class='op'>=</span> <span class='ident'>before</span>.<span class='ident'>and</span>(<span class='ident'>new</span>));
+
+        <span class='kw'>let</span> <span class='ident'>out</span> <span class='op'>=</span> <span class='ident'>f</span>();
+
+        <span class='comment'>// Revert to the style that was active before and set it as current</span>
+        <span class='ident'>before</span>.<span class='ident'>revert_to</span>();
+        <span class='ident'>CURR_STYLE</span>.<span class='ident'>with</span>(<span class='op'>|</span><span class='ident'>curr</span><span class='op'>|</span> <span class='op'>*</span><span class='ident'>curr</span>.<span class='ident'>borrow_mut</span>() <span class='op'>=</span> <span class='ident'>before</span>);
+
+        <span class='ident'>out</span>
     }
 }
 
 <span class='doccomment'>/// Lists all possible Colors. It implements `ToStyle` so it&#39;s possible to call</span>
-<span class='doccomment'>/// `ToStyle`&#39;s methods direclty on a `Color` variant like:</span>
+<span class='doccomment'>/// `ToStyle`&#39;s methods directly on a `Color` variant like:</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// `println!(&quot;{}&quot;, Color::Red.bold().paint(&quot;Red and bold&quot;));`</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>)]</span>
@@ -729,12 +926,12 @@
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>Style</span>::<span class='ident'>default</span>();
         <span class='kw'>match</span> <span class='self'>self</span> {
             <span class='ident'>Attr</span>::<span class='ident'>Plain</span> <span class='op'>=&gt;</span> {},
-            <span class='ident'>Attr</span>::<span class='ident'>Bold</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>bold</span> <span class='op'>=</span> <span class='boolval'>true</span>,
-            <span class='ident'>Attr</span>::<span class='ident'>Dim</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>dim</span> <span class='op'>=</span> <span class='boolval'>true</span>,
-            <span class='ident'>Attr</span>::<span class='ident'>Underline</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>underline</span> <span class='op'>=</span> <span class='boolval'>true</span>,
-            <span class='ident'>Attr</span>::<span class='ident'>Blink</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>blink</span> <span class='op'>=</span> <span class='boolval'>true</span>,
-            <span class='ident'>Attr</span>::<span class='ident'>Reverse</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>reverse</span> <span class='op'>=</span> <span class='boolval'>true</span>,
-            <span class='ident'>Attr</span>::<span class='ident'>Secure</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>secure</span> <span class='op'>=</span> <span class='boolval'>true</span>,
+            <span class='ident'>Attr</span>::<span class='ident'>Bold</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>bold</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>),
+            <span class='ident'>Attr</span>::<span class='ident'>Dim</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>dim</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>),
+            <span class='ident'>Attr</span>::<span class='ident'>Underline</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>underline</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>),
+            <span class='ident'>Attr</span>::<span class='ident'>Blink</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>blink</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>),
+            <span class='ident'>Attr</span>::<span class='ident'>Reverse</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>reverse</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>),
+            <span class='ident'>Attr</span>::<span class='ident'>Secure</span> <span class='op'>=&gt;</span> <span class='ident'>s</span>.<span class='ident'>secure</span> <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='boolval'>true</span>),
         }
         <span class='ident'>s</span>
     }
@@ -746,12 +943,12 @@
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Style</span> {
     <span class='kw'>pub</span> <span class='ident'>fg</span>: <span class='ident'>Color</span>,
     <span class='kw'>pub</span> <span class='ident'>bg</span>: <span class='ident'>Color</span>,
-    <span class='kw'>pub</span> <span class='ident'>bold</span>: <span class='ident'>bool</span>,
-    <span class='kw'>pub</span> <span class='ident'>dim</span>: <span class='ident'>bool</span>,
-    <span class='kw'>pub</span> <span class='ident'>underline</span>: <span class='ident'>bool</span>,
-    <span class='kw'>pub</span> <span class='ident'>blink</span>: <span class='ident'>bool</span>,
-    <span class='kw'>pub</span> <span class='ident'>reverse</span>: <span class='ident'>bool</span>,
-    <span class='kw'>pub</span> <span class='ident'>secure</span>: <span class='ident'>bool</span>,
+    <span class='kw'>pub</span> <span class='ident'>bold</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>,
+    <span class='kw'>pub</span> <span class='ident'>dim</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>,
+    <span class='kw'>pub</span> <span class='ident'>underline</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>,
+    <span class='kw'>pub</span> <span class='ident'>blink</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>,
+    <span class='kw'>pub</span> <span class='ident'>reverse</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>,
+    <span class='kw'>pub</span> <span class='ident'>secure</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>,
 }
 
 
@@ -760,22 +957,24 @@
         <span class='ident'>Style</span> {
             <span class='ident'>fg</span>: <span class='ident'>Color</span>::<span class='ident'>default</span>(),
             <span class='ident'>bg</span>: <span class='ident'>Color</span>::<span class='ident'>default</span>(),
-            <span class='ident'>bold</span>: <span class='boolval'>false</span>,
-            <span class='ident'>dim</span>: <span class='boolval'>false</span>,
-            <span class='ident'>underline</span>: <span class='boolval'>false</span>,
-            <span class='ident'>blink</span>: <span class='boolval'>false</span>,
-            <span class='ident'>reverse</span>: <span class='boolval'>false</span>,
-            <span class='ident'>secure</span>: <span class='boolval'>false</span>,
+            <span class='ident'>bold</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>dim</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>underline</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>blink</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>reverse</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>secure</span>: <span class='prelude-val'>None</span>,
         }
     }
 }
 
-<span class='comment'>// static INIT_TERM: Once = ONCE_INIT;</span>
 <span class='macro'>thread_local</span><span class='macro'>!</span>(<span class='kw'>static</span> <span class='ident'>TERM</span>: <span class='ident'>RefCell</span><span class='op'>&lt;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>term</span>::<span class='ident'>StdoutTerminal</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>
     <span class='op'>=</span> <span class='ident'>RefCell</span>::<span class='ident'>new</span>(<span class='ident'>term</span>::<span class='ident'>stdout</span>()));
+<span class='macro'>thread_local</span><span class='macro'>!</span>(<span class='kw'>static</span> <span class='ident'>CURR_STYLE</span>: <span class='ident'>RefCell</span><span class='op'>&lt;</span><span class='ident'>Style</span><span class='op'>&gt;</span>
+    <span class='op'>=</span> <span class='ident'>RefCell</span>::<span class='ident'>new</span>(<span class='ident'>Style</span>::<span class='ident'>default</span>()));
+
 
 <span class='kw'>impl</span> <span class='ident'>Style</span> {
-    <span class='kw'>fn</span> <span class='ident'>prepare</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
+    <span class='kw'>fn</span> <span class='ident'>apply</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
         <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>try_term</span> {
             (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> ({
                 <span class='kw'>match</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> {
@@ -800,28 +999,53 @@
                 <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> {},
                 <span class='prelude-val'>Some</span>(<span class='ident'>c</span>) <span class='op'>=&gt;</span> { <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>bg</span>(<span class='ident'>c</span>)); },
             }
-            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>bold</span> { <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Bold</span>)) }
-            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>underline</span> { <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Underline</span>(<span class='boolval'>true</span>))) }
-            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>blink</span> { <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Blink</span>)) }
-            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>reverse</span> { <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Reverse</span>)) }
-            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>secure</span> { <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Secure</span>)) }
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>bold</span>.<span class='ident'>unwrap_or</span>(<span class='boolval'>false</span>) {
+                <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Bold</span>))
+            }
+            <span class='kw'>match</span> <span class='self'>self</span>.<span class='ident'>underline</span> {
+                <span class='prelude-val'>Some</span>(<span class='ident'>u</span>) <span class='op'>=&gt;</span> <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Underline</span>(<span class='ident'>u</span>))),
+                <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> {},
+            }
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>blink</span>.<span class='ident'>unwrap_or</span>(<span class='boolval'>false</span>) {
+                <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Blink</span>))
+            }
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>reverse</span>.<span class='ident'>unwrap_or</span>(<span class='boolval'>false</span>) {
+                <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Reverse</span>))
+            }
+            <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>secure</span>.<span class='ident'>unwrap_or</span>(<span class='boolval'>false</span>) {
+                <span class='macro'>try_term</span><span class='macro'>!</span>(<span class='ident'>t</span>.<span class='ident'>attr</span>(<span class='ident'>term</span>::<span class='ident'>Attr</span>::<span class='ident'>Secure</span>))
+            }
 
             <span class='prelude-val'>Ok</span>(())
         })
     }
 
-    <span class='kw'>fn</span> <span class='ident'>cleanup</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='ident'>TERM</span>.<span class='ident'>with</span>(<span class='op'>|</span><span class='ident'>term_opt</span><span class='op'>|</span> {
+    <span class='comment'>// `o` overrides values of `self`</span>
+    <span class='kw'>fn</span> <span class='ident'>and</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>o</span>: <span class='ident'>Style</span>) <span class='op'>-&gt;</span> <span class='ident'>Style</span> {
+        <span class='ident'>Style</span> {
+            <span class='ident'>fg</span>: <span class='kw'>if</span> <span class='ident'>o</span>.<span class='ident'>fg</span> <span class='op'>==</span> <span class='ident'>Color</span>::<span class='ident'>Normal</span> { <span class='self'>self</span>.<span class='ident'>fg</span> } <span class='kw'>else</span> { <span class='ident'>o</span>.<span class='ident'>fg</span> },
+            <span class='ident'>bg</span>: <span class='kw'>if</span> <span class='ident'>o</span>.<span class='ident'>bg</span> <span class='op'>==</span> <span class='ident'>Color</span>::<span class='ident'>Normal</span> { <span class='self'>self</span>.<span class='ident'>bg</span> } <span class='kw'>else</span> { <span class='ident'>o</span>.<span class='ident'>bg</span> },
+            <span class='ident'>bold</span>: <span class='ident'>o</span>.<span class='ident'>bold</span>.<span class='ident'>or</span>(<span class='self'>self</span>.<span class='ident'>bold</span>),
+            <span class='ident'>dim</span>: <span class='ident'>o</span>.<span class='ident'>dim</span>.<span class='ident'>or</span>(<span class='self'>self</span>.<span class='ident'>dim</span>),
+            <span class='ident'>underline</span>: <span class='ident'>o</span>.<span class='ident'>underline</span>.<span class='ident'>or</span>(<span class='self'>self</span>.<span class='ident'>underline</span>),
+            <span class='ident'>blink</span>: <span class='ident'>o</span>.<span class='ident'>blink</span>.<span class='ident'>or</span>(<span class='self'>self</span>.<span class='ident'>blink</span>),
+            <span class='ident'>reverse</span>: <span class='ident'>o</span>.<span class='ident'>reverse</span>.<span class='ident'>or</span>(<span class='self'>self</span>.<span class='ident'>reverse</span>),
+            <span class='ident'>secure</span>: <span class='ident'>o</span>.<span class='ident'>secure</span>.<span class='ident'>or</span>(<span class='self'>self</span>.<span class='ident'>secure</span>),
+        }
+    }
+
+    <span class='kw'>fn</span> <span class='ident'>revert_to</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
+        <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>TERM</span>.<span class='ident'>with</span>(<span class='op'>|</span><span class='ident'>term_opt</span><span class='op'>|</span> {
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>tmut</span> <span class='op'>=</span> <span class='ident'>term_opt</span>.<span class='ident'>borrow_mut</span>();
             <span class='kw'>match</span> <span class='ident'>tmut</span>.<span class='ident'>as_mut</span>() {
                 <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>),
-                <span class='prelude-val'>Some</span>(<span class='ident'>t</span>) <span class='op'>=&gt;</span>
-                    <span class='kw'>match</span> <span class='ident'>t</span>.<span class='ident'>reset</span>() {
-                        <span class='prelude-val'>Ok</span>(<span class='boolval'>true</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Ok</span>(()),
-                        _ <span class='op'>=&gt;</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>),
-                    },
+                <span class='prelude-val'>Some</span>(<span class='ident'>t</span>) <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>t</span>.<span class='ident'>reset</span>() {
+                    <span class='prelude-val'>Ok</span>(..) <span class='op'>=&gt;</span> <span class='prelude-val'>Ok</span>(()),
+                    <span class='prelude-val'>Err</span>(..) <span class='op'>=&gt;</span> <span class='prelude-val'>Err</span>(<span class='ident'>Error</span>),
+                },
             }
-        })
+        }));
+        <span class='self'>self</span>.<span class='ident'>apply</span>()
     }
 }
 
@@ -833,8 +1057,8 @@
 }
 
 <span class='doccomment'>/// Saves a style and a reference to something that will be printed in that</span>
-<span class='doccomment'>/// style. That something of type `T` needs to implement either</span>
-<span class='doccomment'>/// `std::fmt::Debug` or `std::fmt::Display`</span>
+<span class='doccomment'>/// style. That something of type `T` needs to implement at least one of</span>
+<span class='doccomment'>/// `std::fmt::Debug` and `std::fmt::Display`.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Painted</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='ident'>style</span>: <span class='ident'>Style</span>,
     <span class='ident'>obj</span>: <span class='ident'>T</span>,
@@ -843,18 +1067,14 @@
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Display</span><span class='op'>&gt;</span> <span class='ident'>Display</span> <span class='kw'>for</span> <span class='ident'>Painted</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// Implementation for `T: Display` -&gt; to print with `{}`.</span>
     <span class='kw'>fn</span> <span class='ident'>fmt</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Formatter</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='macro'>try</span><span class='macro'>!</span>(<span class='self'>self</span>.<span class='ident'>style</span>.<span class='ident'>prepare</span>());
-        <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>obj</span>));
-        <span class='self'>self</span>.<span class='ident'>style</span>.<span class='ident'>cleanup</span>()
+        <span class='self'>self</span>.<span class='ident'>style</span>.<span class='ident'>with</span>(<span class='op'>||</span> <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{}&quot;</span>, <span class='self'>self</span>.<span class='ident'>obj</span>))
     }
 }
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Debug</span><span class='op'>&gt;</span> <span class='ident'>Debug</span> <span class='kw'>for</span> <span class='ident'>Painted</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// Implementation for `T: Debug` -&gt; to print with `{:?}`.</span>
     <span class='kw'>fn</span> <span class='ident'>fmt</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Formatter</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='macro'>try</span><span class='macro'>!</span>(<span class='self'>self</span>.<span class='ident'>style</span>.<span class='ident'>prepare</span>());
-        <span class='macro'>try</span><span class='macro'>!</span>(<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{:?}&quot;</span>, <span class='self'>self</span>.<span class='ident'>obj</span>));
-        <span class='self'>self</span>.<span class='ident'>style</span>.<span class='ident'>cleanup</span>()
+        <span class='self'>self</span>.<span class='ident'>style</span>.<span class='ident'>with</span>(<span class='op'>||</span> <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;{:?}&quot;</span>, <span class='self'>self</span>.<span class='ident'>obj</span>))
     }
 }
 

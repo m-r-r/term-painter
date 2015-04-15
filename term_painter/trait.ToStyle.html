@@ -43,8 +43,8 @@
     <section id='main' class="content trait">
 <h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>term_painter</a>::<wbr><a class='trait' href=''>ToStyle</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-12' href='../src/term_painter/lib.rs.html#108-174'>[src]</a></span></h1>
-<pre class='rust trait'>pub trait ToStyle: <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> {
+        </span><a id='src-12' href='../src/term_painter/lib.rs.html#172-261'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait ToStyle: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> {
     fn <a href='#tymethod.to_style' class='fnname'>to_style</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a>;
 
     fn <a href='#method.fg' class='fnname'>fg</a>(self, c: <a class='enum' href='../term_painter/enum.Color.html' title='term_painter::Color'>Color</a>) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a> { ... }
@@ -55,7 +55,8 @@
     fn <a href='#method.blink' class='fnname'>blink</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a> { ... }
     fn <a href='#method.reverse' class='fnname'>reverse</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a> { ... }
     fn <a href='#method.secure' class='fnname'>secure</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a> { ... }
-    fn <a href='#method.paint' class='fnname'>paint</a>&lt;T&gt;(&amp;self, obj: T) -&gt; <a class='struct' href='../term_painter/struct.Painted.html' title='term_painter::Painted'>Painted</a>&lt;T&gt; { ... }
+    fn <a href='#method.paint' class='fnname'>paint</a>&lt;T&gt;(&amp;self, obj: T) -&gt; <a class='struct' href='../term_painter/struct.Painted.html' title='term_painter::Painted'>Painted</a>&lt;T&gt; <span class='where'>where Self: <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span> { ... }
+    fn <a href='#method.with' class='fnname'>with</a>&lt;F, R&gt;(&amp;self, f: F) -&gt; R <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; R, Self: <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span> { ... }
 }</pre><div class='docblock'><p>Everything that can be seen as part of a style. This is the core of this
 crate. All functions (&quot;style modifier&quot;) consume self and return a modified
 version of the style.</p>
@@ -73,10 +74,12 @@ version of the style.</p>
 </div><h3 id='method.blink' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.blink' class='fnname'>blink</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a></code></h3><div class='docblock'><p>Underlines the text.</p>
 </div><h3 id='method.reverse' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.reverse' class='fnname'>reverse</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a></code></h3><div class='docblock'><p>Underlines the text.</p>
 </div><h3 id='method.secure' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.secure' class='fnname'>secure</a>(self) -&gt; <a class='struct' href='../term_painter/struct.Style.html' title='term_painter::Style'>Style</a></code></h3><div class='docblock'><p>Secure mode.</p>
-</div><h3 id='method.paint' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.paint' class='fnname'>paint</a>&lt;T&gt;(&amp;self, obj: T) -&gt; <a class='struct' href='../term_painter/struct.Painted.html' title='term_painter::Painted'>Painted</a>&lt;T&gt;</code></h3><div class='docblock'><p>Wraps the style specified in <code>self</code> and something of arbitrary type
+</div><h3 id='method.paint' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.paint' class='fnname'>paint</a>&lt;T&gt;(&amp;self, obj: T) -&gt; <a class='struct' href='../term_painter/struct.Painted.html' title='term_painter::Painted'>Painted</a>&lt;T&gt; <span class='where'>where Self: <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span></code></h3><div class='docblock'><p>Wraps the style specified in <code>self</code> and something of arbitrary type
 into a <code>Painted</code>. When <code>Painted</code> is printed it will print the arbitrary
 something with the given style. <code>T</code> needs to implement
 <code>std::fmt::Display</code> or <code>std::fmt::Debug</code>.</p>
+</div><h3 id='method.with' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.with' class='fnname'>with</a>&lt;F, R&gt;(&amp;self, f: F) -&gt; R <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>() -&gt; R, Self: <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span></code></h3><div class='docblock'><p>Executes the given function, applying the style information before
+calling it and resetting after it finished.</p>
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>

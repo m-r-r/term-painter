@@ -41,9 +41,11 @@
     </nav>
 
     <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>term_painter</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
-            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/term_painter/lib.rs.html#1-533'>[src]</a></span></h1>
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>term_painter</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-0' class='srclink' href='../src/term_painter/lib.rs.html#1-622' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This is a crate for coloring and formatting terminal output. Simple
 example:</p>
 <pre id='rust-example-rendered' class='rust '>
@@ -109,11 +111,11 @@ preceding modifier:</p>
 
 <p>One way is to call <code>paint</code> to use it on some object.
 <code>paint</code> will return the wrapper object <code>Painted</code> that holds your object and
-the specified style. <code>Painted</code> implements <code>Display</code> and/or <code>Debug</code> if the
-type of the given Object, <code>T</code>, does. So the <code>Painted</code> object can be printed
-via <code>println!</code> or similar macros. When it gets printed, it will apply the
-given style before printing the object of type <code>T</code> and will reset the style
-after printing.</p>
+the specified style. <code>Painted</code> implements any formatting trait (like
+<code>Display</code> and <code>Debug</code>) if and only if the type of the given Object, <code>T</code>,
+does. So a <code>Painted</code> object can be printed via <code>println!</code> or similar macros.
+When it gets printed, it will apply the given style before printing the
+object of type <code>T</code> and will reset the style after printing.</p>
 
 <p><code>Note</code>: <code>paint</code> will consume the passed object. This is no problem when
 passing constant literals (like <code>paint(&quot;cheesecake&quot;)</code>) or types that are
@@ -202,48 +204,59 @@ function fails to set state. However, this crate silently ignores those
 failures. To check the capabilities of the terminal, use <code>term</code> directly.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Painted.html'
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Painted.html'
                                title='term_painter::Painted'>Painted</a></td>
-                        <td class='docblock short'><p>Saves a style and a reference to something that will be printed in that
-style. That something of type <code>T</code> needs to implement at least one of
-<code>std::fmt::Debug</code> and <code>std::fmt::Display</code>.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Wraps an object of type <code>T</code> and a style. When attempting to print it, the
+given style is applied before printing and reset afterwards.
+All formatting traits (<code>Display</code>, <code>Debug</code>, ...) that are implemented
+for <code>T</code> are also implemented the wrapper type <code>Painted&lt;T&gt;</code>.</p>
+
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Style.html'
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Style.html'
                                title='term_painter::Style'>Style</a></td>
-                        <td class='docblock short'><p>Saves all properties of a style. Implements <code>ToStyle</code>, so you can call
+                        <td class='docblock short'>
+                             <p>Saves all properties of a style. Implements <code>ToStyle</code>, so you can call
 style modifiers on it.</p>
-</td>
+
+                        </td>
                     </tr>
                 </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='enum' href='enum.Attr.html'
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.Attr.html'
                                title='term_painter::Attr'>Attr</a></td>
-                        <td class='docblock short'><p>Lists possible attributes. It implements <code>ToStyle</code> so it&#39;s possible to call
+                        <td class='docblock short'>
+                             <p>Lists possible attributes. It implements <code>ToStyle</code> so it&#39;s possible to call
 <code>ToStyle</code>&#39;s methods directly on a <code>Attr</code> variant like:</p>
-</td>
+
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='enum' href='enum.Color.html'
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.Color.html'
                                title='term_painter::Color'>Color</a></td>
-                        <td class='docblock short'><p>Lists all possible Colors. It implements <code>ToStyle</code> so it&#39;s possible to call
+                        <td class='docblock short'>
+                             <p>Lists all possible Colors. It implements <code>ToStyle</code> so it&#39;s possible to call
 <code>ToStyle</code>&#39;s methods directly on a <code>Color</code> variant like:</p>
-</td>
+
+                        </td>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='trait' href='trait.ToStyle.html'
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.ToStyle.html'
                                title='term_painter::ToStyle'>ToStyle</a></td>
-                        <td class='docblock short'><p>Everything that can be seen as part of a style. This is the core of this
+                        <td class='docblock short'>
+                             <p>Everything that can be seen as part of a style. This is the core of this
 crate. All functions (&quot;style modifier&quot;) consume self and return a modified
 version of the style.</p>
-</td>
+
+                        </td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
@@ -277,6 +290,10 @@ version of the style.</p>
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>

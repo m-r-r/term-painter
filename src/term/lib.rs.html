@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/lukas/.multirust/toolchains/beta/cargo/registry/src/github.com-1ecc6299db9ec823/term-0.2.7/src/lib.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.2.10/src/lib.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>lib.rs.html -- source</title>
@@ -247,8 +247,49 @@
 <span id="205">205</span>
 <span id="206">206</span>
 <span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
 </pre><pre class='rust '>
-<span class='comment'>// Copyright 2013-2014 The Rust Project Developers. See the COPYRIGHT</span>
+<span class='comment'>// Copyright 2013-2015 The Rust Project Developers. See the COPYRIGHT</span>
 <span class='comment'>// file at the top-level directory of this distribution and at</span>
 <span class='comment'>// http://rust-lang.org/COPYRIGHT.</span>
 <span class='comment'>//</span>
@@ -265,6 +306,23 @@
 <span class='doccomment'>//! implementations, the `TerminfoTerminal`, which uses control characters from</span>
 <span class='doccomment'>//! a [terminfo][ti] database, and `WinConsole`, which uses the [Win32 Console</span>
 <span class='doccomment'>//! API][win].</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! # Usage</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! This crate is [on crates.io](https://crates.io/crates/term) and can be</span>
+<span class='doccomment'>//! used by adding `term` to the dependencies in your project&#39;s `Cargo.toml`.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```toml</span>
+<span class='doccomment'>//! [dependencies]</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! term = &quot;0.2&quot;</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! and this to your crate root:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```rust</span>
+<span class='doccomment'>//! extern crate term;</span>
+<span class='doccomment'>//! ```</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//!</span>
@@ -295,6 +353,11 @@
        <span class='ident'>html_playground_url</span> <span class='op'>=</span> <span class='string'>&quot;http://play.rust-lang.org/&quot;</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>deny</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>test</span>, <span class='ident'>deny</span>(<span class='ident'>warnings</span>))]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>rust_build</span>, <span class='ident'>feature</span>(<span class='ident'>staged_api</span>))]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>rust_build</span>, <span class='ident'>staged_api</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>rust_build</span>,
+            <span class='ident'>unstable</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;rustc_private&quot;</span>,
+                     <span class='ident'>reason</span> <span class='op'>=</span> <span class='string'>&quot;use the crates.io `term` library instead&quot;</span>))]</span>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>prelude</span>::<span class='op'>*</span>;
 
@@ -309,10 +372,10 @@
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>windows</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>win</span>;
 
+<span class='doccomment'>/// Alias for stdout terminals.</span>
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>StdoutTerminal</span> <span class='op'>=</span> <span class='ident'>Terminal</span><span class='op'>&lt;</span><span class='ident'>Output</span><span class='op'>=</span><span class='ident'>Stdout</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='ident'>Send</span>;
 <span class='doccomment'>/// Alias for stderr terminals.</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>StdoutTerminal</span> <span class='op'>=</span> <span class='ident'>Terminal</span><span class='op'>&lt;</span><span class='ident'>Stdout</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='ident'>Send</span>;
-<span class='doccomment'>/// Alias for stderr terminals.</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>StderrTerminal</span> <span class='op'>=</span> <span class='ident'>Terminal</span><span class='op'>&lt;</span><span class='ident'>Stderr</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='ident'>Send</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>StderrTerminal</span> <span class='op'>=</span> <span class='ident'>Terminal</span><span class='op'>&lt;</span><span class='ident'>Output</span><span class='op'>=</span><span class='ident'>Stderr</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='ident'>Send</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>not</span>(<span class='ident'>windows</span>))]</span>
 <span class='doccomment'>/// Return a Terminal wrapping stdout, or None if a terminal couldn&#39;t be</span>
@@ -329,7 +392,7 @@
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>stdout</span>() <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>StdoutTerminal</span><span class='op'>&gt;&gt;</span> {
     <span class='ident'>TerminfoTerminal</span>::<span class='ident'>new</span>(<span class='ident'>io</span>::<span class='ident'>stdout</span>()).<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>t</span><span class='op'>|</span> {
         <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>t</span>) <span class='kw'>as</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>StdoutTerminal</span><span class='op'>&gt;</span>
-    }).<span class='ident'>or_else</span>(<span class='op'>||</span> <span class='ident'>WinConsole</span>::<span class='ident'>new</span>(<span class='ident'>io</span>::<span class='ident'>stdout</span>()).<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>t</span><span class='op'>|</span> {
+    }).<span class='ident'>or_else</span>(<span class='op'>||</span> <span class='ident'>WinConsole</span>::<span class='ident'>new</span>(<span class='ident'>io</span>::<span class='ident'>stdout</span>()).<span class='ident'>ok</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>t</span><span class='op'>|</span> {
         <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>t</span>) <span class='kw'>as</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>StdoutTerminal</span><span class='op'>&gt;</span>
     }))
 }
@@ -349,13 +412,14 @@
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>stderr</span>() <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>StderrTerminal</span><span class='op'>&gt;&gt;</span> {
     <span class='ident'>TerminfoTerminal</span>::<span class='ident'>new</span>(<span class='ident'>io</span>::<span class='ident'>stderr</span>()).<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>t</span><span class='op'>|</span> {
         <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>t</span>) <span class='kw'>as</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>StderrTerminal</span><span class='op'>&gt;</span>
-    }).<span class='ident'>or_else</span>(<span class='op'>||</span> <span class='ident'>WinConsole</span>::<span class='ident'>new</span>(<span class='ident'>io</span>::<span class='ident'>stderr</span>()).<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>t</span><span class='op'>|</span> {
+    }).<span class='ident'>or_else</span>(<span class='op'>||</span> <span class='ident'>WinConsole</span>::<span class='ident'>new</span>(<span class='ident'>io</span>::<span class='ident'>stderr</span>()).<span class='ident'>ok</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>t</span><span class='op'>|</span> {
         <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>t</span>) <span class='kw'>as</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>StderrTerminal</span><span class='op'>&gt;</span>
     }))
 }
 
 
 <span class='doccomment'>/// Terminal color definitions</span>
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>color</span> {
     <span class='doccomment'>/// Number for a terminal color</span>
     <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Color</span> <span class='op'>=</span> <span class='ident'>u16</span>;
@@ -410,7 +474,10 @@
 
 <span class='doccomment'>/// A terminal with similar capabilities to an ANSI Terminal</span>
 <span class='doccomment'>/// (foreground/background colors etc).</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Terminal</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Write</span><span class='op'>&gt;</span>: <span class='ident'>Write</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Terminal</span>: <span class='ident'>Write</span> {
+    <span class='doccomment'>/// The terminal&#39;s output writer type.</span>
+    <span class='kw'>type</span> <span class='ident'>Output</span>: <span class='ident'>Write</span>;
+
     <span class='doccomment'>/// Sets the foreground color to the given color.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// If the color is a bright color, but the terminal only supports 8 colors,</span>
@@ -443,17 +510,32 @@
     <span class='doccomment'>/// was an I/O error.</span>
     <span class='kw'>fn</span> <span class='ident'>reset</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>;
 
+    <span class='doccomment'>/// Moves the cursor up one line.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Returns `Ok(true)` if the cursor was moved, `Ok(false)` otherwise, and `Err(e)`</span>
+    <span class='doccomment'>/// if there was an I/O error.</span>
+    <span class='kw'>fn</span> <span class='ident'>cursor_up</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>;
+
+    <span class='doccomment'>/// Deletes the text from the cursor location to the end of the line.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Returns `Ok(true)` if the text was deleted, `Ok(false)` otherwise, and `Err(e)`</span>
+    <span class='doccomment'>/// if there was an I/O error.</span>
+    <span class='kw'>fn</span> <span class='ident'>delete_line</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>;
+
+    <span class='doccomment'>/// Moves the cursor to the left edge of the current line.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Returns `Ok(true)` if the text was deleted, `Ok(false)` otherwise, and `Err(e)`</span>
+    <span class='doccomment'>/// if there was an I/O error.</span>
+    <span class='kw'>fn</span> <span class='ident'>carriage_return</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>bool</span><span class='op'>&gt;</span>;
+
     <span class='doccomment'>/// Gets an immutable reference to the stream inside</span>
-    <span class='kw'>fn</span> <span class='ident'>get_ref</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>T</span>;
+    <span class='kw'>fn</span> <span class='ident'>get_ref</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 
     <span class='doccomment'>/// Gets a mutable reference to the stream inside</span>
-    <span class='kw'>fn</span> <span class='ident'>get_mut</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>T</span>;
-}
+    <span class='kw'>fn</span> <span class='ident'>get_mut</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 
-<span class='doccomment'>/// A terminal which can be unwrapped.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>UnwrappableTerminal</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Write</span><span class='op'>&gt;</span>: <span class='ident'>Terminal</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// Returns the contained stream, destroying the `Terminal`</span>
-    <span class='kw'>fn</span> <span class='ident'>unwrap</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>T</span>;
+    <span class='kw'>fn</span> <span class='ident'>into_inner</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> <span class='kw'>where</span> <span class='kw'>Self</span>: <span class='ident'>Sized</span>;
 }
 </pre>
 </section>
@@ -488,6 +570,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>
